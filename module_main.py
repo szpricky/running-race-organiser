@@ -1,4 +1,4 @@
-# Name: module.py
+# Name: module_main.py
 # Author: Patrik Richard Szilagyi
 # Description: Module file for Race Organiser Application (SOFT6017 Project)
 

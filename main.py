@@ -3,8 +3,8 @@
 # Description: SOFT6017 Project 2021 - Race Organiser Application
 
 # Import modules
-from module import *
-from race import *
+from module_main import *
+from module_race import *
 
 
 # Function for printing the main menu
