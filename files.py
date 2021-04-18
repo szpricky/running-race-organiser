@@ -80,7 +80,7 @@ def read_race_results_from_file(race):
 
             # Variables to store data from file
             runner_id = data[0]
-            runner_time = data[1]
+            runner_time = int(data[1])
             # Add results to race object
             race.add_result(runner_id, runner_time)
             # Store the race results in result variable
@@ -92,7 +92,7 @@ def read_race_results_from_file(race):
         file.close()
     # Execute code when file doesn't exist
     except OSError:
-        print(f"No such race exists: {race.venue}")
+        pass
 
     return results_list
 # End of read_race_results_from_file function

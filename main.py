@@ -18,7 +18,8 @@ def menu():
           f"5. Show all the race times for one competitor\n"
           f"6. Show all competitors who have won a race\n"
           f"7. Quit")
-    selection = read_menu_selection("==> ")
+    MENU_OPTIONS = 7
+    selection = read_menu_selection("==> ", MENU_OPTIONS)
     return selection
 # End of menu function
 
@@ -27,38 +28,41 @@ def menu():
 # No return value
 def select_option():
     while True:
-        # Call the menu function and store the returned value in menu_selection
-        menu_selection = menu()
+        try:
+            # Call the menu function and store the returned value in menu_selection
+            menu_selection = menu()
 
-        # If statements to validate user selection
-        # Code to execute if 1st option is selected
-        if menu_selection == 1:
-            show_results()
+            # If statements to validate user selection
+            # Code to execute if 1st option is selected
+            if menu_selection == 1:
+                show_results()
 
-        # Code to execute if 2nd option is selected
-        if menu_selection == 2:
-            add_results()
+            # Code to execute if 2nd option is selected
+            if menu_selection == 2:
+                add_results()
 
-        # Code to execute if 3rd option is selected
-        if menu_selection == 3:
-            show_competitors_by_county()
+            # Code to execute if 3rd option is selected
+            if menu_selection == 3:
+                show_competitors_by_county()
 
-        # Code to execute if 4th option is selected
-        if menu_selection == 4:
-            show_winners()
+            # Code to execute if 4th option is selected
+            if menu_selection == 4:
+                show_winners()
 
-        # Code to execute if 5th option is selected
-        if menu_selection == 5:
-            show_race_times()
+            # Code to execute if 5th option is selected
+            if menu_selection == 5:
+                show_race_times()
 
-        # Code to execute if 6th option is selected
-        if menu_selection == 6:
-            show_winning_competitors()
+            # Code to execute if 6th option is selected
+            if menu_selection == 6:
+                show_winning_competitors()
 
-        # Code to execute if 7th option is selected (Quit program)
-        if menu_selection == 7:
-            print(f"Bye bye!")
-            break
+            # Code to execute if 7th option is selected (Quit program)
+            if menu_selection == 7:
+                print(f"Bye bye!")
+                break
+        except ValueError:
+            print()
 
     # End of while loop
 # End of select_option function
@@ -71,6 +75,7 @@ def main():
 
     # Call the select_option function
     select_option()
+
 # End of main function
 
 
