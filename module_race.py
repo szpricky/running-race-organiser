@@ -103,7 +103,25 @@ def add_results():
 
 # Option 3 - Show all competitors by county
 def show_competitors_by_county():
-    print("Show all competitors by county\n")
+    # Load the list of Runner objects
+    runners = read_runners_from_file()
+
+    print("\nCork runners\n"
+          "------------")
+    # Loop over runners
+    for runner in runners:
+        # If the id_no includes "CK" then the runners are from Cork
+        if "CK" in runner.id_no:
+            print(f"{runner.name}\t{runner.id_no}")
+
+    print("\nKerry runners\n"
+          "-------------")
+    # Loop over runners
+    for runner in runners:
+        # If the id_no includes "KY" then the runners are from Kerry
+        if "KY" in runner.id_no:
+            print(f"{runner.name}\t{runner.id_no}")
+    print()
 # End of show_competitors_by_county function
 
 
@@ -126,7 +144,7 @@ def show_winning_competitors():
 
 
 def main():
-    pass
+    show_competitors_by_county()
 
 
 if __name__ == '__main__':
