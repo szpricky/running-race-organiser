@@ -39,8 +39,17 @@ def read_menu_selection(prompt, options_amount):
 
 # Function to convert seconds from minutes
 def convert_time_to_min(s):
-    return f"{s // 60:>2d} min {s % 60:>2d} seconds"
+    return f"{s // 60:>3d} min {s % 60:>2d} seconds"
 # End of convert_time_to_min function
 
+
+# Read time in seconds
+def read_time_value(prompt):
+    while True:
+        n = int(input(prompt))
+        if n >= 0:
+            return n
+    # End of while loop
+# End of read_time_value function
 
 # END OF FILE

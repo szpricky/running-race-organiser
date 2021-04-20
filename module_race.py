@@ -61,7 +61,43 @@ def show_results():
 
 # Option 2 - Add results for a race
 def add_results():
-    print("Add results for a race\n")
+    print(f"\nAdd results for a race")
+    # Store the venue in a variable
+    venue = read_string("Enter venue for the race: \n==> ")
+
+    # Open the races.txt file and check if the venue already exists
+    with open("races.txt") as races_file:
+        venue_list = races_file.read().splitlines()
+        # If the venue does not exist then it gets added to the races.txt file
+        if venue not in venue_list:
+            venues_file = open("races.txt", "a")
+            print(venue, file=venues_file)
+            venues_file.close()
+
+    # Load the list of Runner objects
+    runners = read_runners_from_file()
+    # Create a new file with the venue name
+    results_file = open(f"{venue.lower()}.txt", "w")
+    # Loop over runners
+    for runner in runners:
+        while True:
+            try:
+                # Ask the user for each runner's time
+                runner_time = read_time_value(f"\n{runner.id_no}'s time: \n==> ")
+                # Store the ID and time for each runner in runner_data
+                runner_data = f"{runner.id_no},{runner_time}"
+                print(runner_data)
+                # If runner's time is more than 0 their result gets added to the file
+                if runner_time > 0:
+                    print(f"{runner_data}", file=results_file)
+                break
+            except ValueError:
+                pass
+
+    # Close the file
+    results_file.close()
+
+    print(f"\nRace results for {venue} added.\n")
 # End of add_results function
 
 
@@ -90,7 +126,7 @@ def show_winning_competitors():
 
 
 def main():
-    show_results()
+    pass
 
 
 if __name__ == '__main__':
