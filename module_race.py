@@ -201,12 +201,42 @@ def show_race_times():
 
 # Option 6 - Show all competitors who have won a race
 def show_winning_competitors():
-    print("Show all competitors who won a race\n")
+    print(f"\nThe following runners have won at least one race:\n"
+          f"--------------------------------------------------")
+
+    races = read_venues_from_file()
+    for race in races:
+        # Load results from file and create lists for runners' IDs and times and winners of the race
+        race_results = read_race_results_from_file(race)
+        runner_ids_list = []
+        runner_times_list = []
+        winners = []
+        for runner_result in race_results:
+            # Store results data for each runner in variables
+            runner_id = runner_result[0]
+            runner_time = runner_result[1]
+            # Add runner's ID and time to list
+            runner_ids_list.append(runner_id)
+            runner_times_list.append(runner_time)
+        # Look for the winner
+        winner_time = min(runner_times_list)
+        winner = runner_ids_list[runner_times_list.index(winner_time)]
+        # Add winner to winners list
+        winners.append(winner)
+
+        # Load the list of Runner objects
+        runners = read_runners_from_file()
+        # Loop over runners
+        for runner in runners:
+            # If the runner has the same ID as the winner print out their name and ID number.
+            if runner.id_no == winner:
+                print(f"\t{runner.name} ({runner.id_no})")
+    print()
 # End of show_winning_competitors function
 
 
 def main():
-    show_race_times()
+    show_winning_competitors()
 
 
 if __name__ == '__main__':
