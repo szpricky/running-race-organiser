@@ -55,6 +55,8 @@ def show_results():
             break
         except ValueError:
             pass
+        except IndexError:
+            pass
     # End of while loop
 # End of show_results function
 
@@ -129,7 +131,7 @@ def show_competitors_by_county():
 def show_winners():
     table_header1 = "Venue"
     table_header2 = "Winner"
-    print(f"{table_header1:18}{table_header2:6}\n"
+    print(f"\n{table_header1:18}{table_header2:6}\n"
           f"========================")
 
     # Load list of race objects
@@ -156,7 +158,44 @@ def show_winners():
 
 # Option 5 - Show all the race times for one competitor
 def show_race_times():
-    print("Show all the race times for one competitor\n")
+    # Load the list of Runner objects
+    runners = read_runners_from_file()
+    # Count the number of races
+    runner_no = 1
+    for runner in runners:
+        print(f"{runner_no}. {runner.name}")
+        runner_no += 1
+
+    while True:
+        try:
+            # Ask user to select a runner from options
+            selection = read_menu_selection("==> ", runner_no)
+            # Store the selected runner in variable
+            selected_runner = runners[selection - 1]
+
+            print(f"\n{selected_runner.name} ({selected_runner.id_no})")
+            print("-" * 36)
+
+            # Load list of race objects
+            races = read_venues_from_file()
+            # Loop over list of race objects
+            for race in races:
+                # Load results from file
+                race_results = read_race_results_from_file(race)
+                # Loop over race_results
+                for runner_result in race_results:
+                    # Store results data for each runner in variables
+                    runner_id = runner_result[0]
+                    runner_time = runner_result[1]
+                    # If the runner_id is the same as the selected runner's ID then print out the venue and their time
+                    if selected_runner.id_no == runner_id:
+                        print(f"{race.venue:18}{convert_time_to_min(runner_time):>18}")
+            print()
+            break
+        except ValueError:
+            pass
+        except IndexError:
+            pass
 # End of show_race_times function
 
 
@@ -167,7 +206,7 @@ def show_winning_competitors():
 
 
 def main():
-    show_winners()
+    show_race_times()
 
 
 if __name__ == '__main__':
