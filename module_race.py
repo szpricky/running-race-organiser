@@ -127,7 +127,30 @@ def show_competitors_by_county():
 
 # Option 4 - Show the winner of each race
 def show_winners():
-    print("Show the winners of each race\n")
+    table_header1 = "Venue"
+    table_header2 = "Winner"
+    print(f"{table_header1:18}{table_header2:6}\n"
+          f"========================")
+
+    # Load list of race objects
+    races = read_venues_from_file()
+    for race in races:
+        # Load results from file and create lists for runners' IDs and times
+        race_results = read_race_results_from_file(race)
+        runner_ids_list = []
+        runner_times_list = []
+        for runner_result in race_results:
+            # Store results data for each runner in variables
+            runner_id = runner_result[0]
+            runner_time = runner_result[1]
+            # Add runner's ID and time to list
+            runner_ids_list.append(runner_id)
+            runner_times_list.append(runner_time)
+        # Look for the winner
+        winner_time = min(runner_times_list)
+        winner = runner_ids_list[runner_times_list.index(winner_time)]
+        print(f"{race.venue:18}{winner:^6}")
+    print()
 # End of show_winners function
 
 
@@ -144,7 +167,7 @@ def show_winning_competitors():
 
 
 def main():
-    show_competitors_by_county()
+    show_winners()
 
 
 if __name__ == '__main__':
