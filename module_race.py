@@ -205,12 +205,12 @@ def show_winning_competitors():
           f"--------------------------------------------------")
 
     races = read_venues_from_file()
+    winners = []
     for race in races:
         # Load results from file and create lists for runners' IDs and times and winners of the race
         race_results = read_race_results_from_file(race)
         runner_ids_list = []
         runner_times_list = []
-        winners = []
         for runner_result in race_results:
             # Store results data for each runner in variables
             runner_id = runner_result[0]
@@ -222,20 +222,26 @@ def show_winning_competitors():
         winner_time = min(runner_times_list)
         winner = runner_ids_list[runner_times_list.index(winner_time)]
         # Add winner to winners list
-        winners.append(winner)
+        if winner not in winners:
+            winners.append(winner)
 
-        # Load the list of Runner objects
-        runners = read_runners_from_file()
-        # Loop over runners
-        for runner in runners:
-            # If the runner has the same ID as the winner print out their name and ID number.
-            if runner.id_no == winner:
-                print(f"\t{runner.name} ({runner.id_no})")
+    # Load the list of Runner objects
+    runners = read_runners_from_file()
+    # Loop over runners
+    for runner in runners:
+        # If the runner has the same ID as the winner print out their name and ID number.
+        if runner.id_no in winners:
+            print(f"\t{runner.name} ({runner.id_no})")
     print()
 # End of show_winning_competitors function
 
 
 def main():
+    show_results()
+    add_results()
+    show_competitors_by_county()
+    show_winners()
+    show_race_times()
     show_winning_competitors()
 
 
