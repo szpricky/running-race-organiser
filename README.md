@@ -1,18 +1,8 @@
-<img src="https://marketing.cit.ie/contentfiles/images/MTU/Logos/MTU_Logo_Colour_RGB_300dpi.jpg" alt="MTU  Logo" width="25%" />
-
-#### MTU Munster Technological University (Cork Campus)
+<img src="https://marketing.cit.ie/contentfiles/images/MTU/Logos/MTU_Logo_Colour_RGB_300dpi.jpg" alt="MTU" width="25%" />
 
 ##### CR106 - BSc Honours Software Development
 
-##### 2020-21 Academic Year Semester 2
-
----
-
 # SOFT6018 - Programming Fundamentals Project
-
-Worth: 25%
-
-**Due Date:** Friday April 30th @ 23:59
 
 ## Running Race Organiser
 
@@ -220,9 +210,5 @@ For each of the race location:
 ### **Version 8** - Implement Menu Option 6 (Show competitors who have won a race)
 
 Add functionality to display the list of those runners who have won at least 1 race.
-
----
-
-#### SOFT6017 - Modular Programming
 
 ##### Patrik Richard Szilagyi, 2021
